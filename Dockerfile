@@ -1,5 +1,5 @@
 # Usando a imagem oficial da Evolution API
-FROM atendai/evolution-api:v2.1.1
+FROM atendai/evolution-api:v2.2.0
 
 # Variáveis de ambiente
 ENV AUTHENTICATION_API_KEY=jXbFjC7w2vOuQRJRawsKuNGNL5BloMpj
