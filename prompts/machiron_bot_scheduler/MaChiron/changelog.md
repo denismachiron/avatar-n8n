@@ -10,3 +10,6 @@
 ## [2025-05-15] - ubuntu
 - Corrigir o bug de data e hora
 
+## [2025-05-15] - ubuntu
+- Retornei para o modelo de texxto para validar as variaveis
+
