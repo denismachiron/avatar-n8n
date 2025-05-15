@@ -13,3 +13,6 @@
 ## [2025-05-15] - ubuntu
 - Retornei para o modelo de texxto para validar as variaveis
 
+## [2025-05-15] - ubuntu
+- tirei as variaveis do prompt, pq elas estao no fluxo do n8n agora
+
