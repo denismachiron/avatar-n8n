@@ -7,3 +7,6 @@
 ## [2025-05-15] - ubuntu
 - Transformei a instrução do bot em json estruturado
 
+## [2025-05-15] - ubuntu
+- Corrigir o bug de data e hora
+
