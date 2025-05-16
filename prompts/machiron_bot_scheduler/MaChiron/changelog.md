@@ -16,3 +16,6 @@
 ## [2025-05-15] - ubuntu
 - tirei as variaveis do prompt, pq elas estao no fluxo do n8n agora
 
+## [2025-05-16] - ubuntu
+- vou separar as responsabilidades dos prompts em um geral e um de cada caso
+
