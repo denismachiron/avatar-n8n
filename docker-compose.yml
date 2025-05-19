@@ -89,3 +89,22 @@ services:
       - postgres
     volumes:
       - evolution_storage:/app/data
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile.django  
+    container_name: django_app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "7070:7070"
+    depends_on:
+      - postgres
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DB_USER=${DB_USER}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+

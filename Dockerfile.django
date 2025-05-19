@@ -1,0 +1,19 @@
+FROM python:3.11-slim
+
+# Define diretório de trabalho
+WORKDIR /app
+
+# Copia apenas os arquivos de dependência primeiro
+COPY backend/requirements.txt .
+
+# Instala dependências
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia o restante do projeto
+COPY backend/ .
+
+# Expõe porta do Django (você usará a 7070)
+EXPOSE 7070
+
+# Comando padrão
+CMD ["python", "manage.py", "runserver", "0.0.0.0:7070"]
