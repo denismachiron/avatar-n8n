@@ -58,3 +58,27 @@ machiron_avatar=# CREATE POLICY allow_all_access_agendamentos ON agendamentos
     CREATE POLICY allow_all_access_workflows ON workflows
     FOR ALL TO public
     USING (true) WITH CHECK (true);
+
+
+CREATE TABLE calendarios (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    empresa_id INT NOT NULL,
+    calendar_name VARCHAR NOT NULL,
+    calendar_id VARCHAR NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT now(),
+    FOREIGN KEY (empresa_id) REFERENCES empresa(id) ON DELETE CASCADE
+);
+    ALTER TABLE calendarios ENABLE ROW LEVEL SECURITY; 
+    CREATE POLICY allow_all_access_calendarios ON calendarios
+    FOR ALL TO public
+    USING (true) WITH CHECK (true);
+
+CREATE TABLE log_atendimentos (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  evento JSONB,
+  created_at TIMESTAMP DEFAULT now()
+);   
+ ALTER TABLE log_atendimentos ENABLE ROW LEVEL SECURITY; 
+    CREATE POLICY allow_all_access_log_atendimentos ON log_atendimentos
+    FOR ALL TO public
+    USING (true) WITH CHECK (true);

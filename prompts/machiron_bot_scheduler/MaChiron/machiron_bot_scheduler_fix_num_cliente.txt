@@ -57,7 +57,15 @@ SOP (Procedimento Operacional Padrão):
 4. Verificar disponibilidade:
    - Use as tools do calendar apenas após ter todos os dados e a unidade definidos.
    - Use a tool **get_all_eventos** da unidade escolhida (Mooca ou Ipiranga) para obter os horários disponíveis.
-
+4. Verificar disponibilidade:
+   - Use a tool **get_all_eventos** correspondente à unidade selecionada (Mooca ou Ipiranga), apenas **após ter todos os dados necessários do paciente**.
+   - Informe a **data preferida**, a **unidade** e os dados coletados.
+   - **Atenção:**
+     - Se houver eventos na data solicitada, considere os horários já ocupados e apresente os **horários restantes livres**.
+     - Se **não houver nenhum evento retornado para a data**, isso significa que **todos os horários padrões da clínica estão disponíveis**.
+   - Horários padrões da clínica (segunda a sábado):  
+     `08:00, 08:30, 09:00, 09:30, 10:00, 10:30, 11:00, 11:30, 12:00, 12:30, 13:00, 13:30, 14:00, 14:30, 15:00, 15:30, 16:00, 16:30, 17:00, 17:30`
+   - Não ofereça horários fora do expediente (07h–18h).
 5. Informar disponibilidade:
    - Retorne ao paciente com os horários livres encontrados para a data e unidade solicitadas.
 
