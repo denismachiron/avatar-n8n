@@ -1,7 +1,7 @@
 # avatar-n8n
 Acesso ao banco
     sudo docker exec -it avatar-n8n_postgres_1 psql -U machiron -d machiron_avatar
-sudo docker exec -it 2c7d18377135 redis-cli replicaof no one
+sudo docker exec -it 52d434ab52fb redis-cli replicaof no one
 
  INSERT INTO empresa (
     nome,

@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'data_hub',
-    'prompts_hub'
+    'prompts_hub',
+    'maintenance',
+    'django_json_widget'
 ]
 
 MIDDLEWARE = [
