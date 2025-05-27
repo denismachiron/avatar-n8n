@@ -2,9 +2,10 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 import json
-from .models import Prompt ,Workflow,WorflowTestReview,PromptHistory
+from .models import Prompt ,Workflow,WorflowTestReview,PromptHistory,HumanReview
 from django import forms
 from django_json_widget.widgets import JSONEditorWidget
+admin.site.register(HumanReview)
 
 @admin.register(WorflowTestReview)
 class WorflowTestReviewAdmin(admin.ModelAdmin):
@@ -89,3 +90,4 @@ class PromptHistoryAdmin(admin.ModelAdmin):
             'fields': ('diff_preview', 'rollback_preview'),
         })
     )
+

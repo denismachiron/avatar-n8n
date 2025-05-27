@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.db import models
 from django.db.models import JSONField
+from django.conf import settings
 
 
 class PromptHistory(models.Model):
@@ -76,6 +77,7 @@ class Prompt(models.Model):
         null=True,
         help_text="Exemplo: {\"fields\": {\"nome\": {\"type\": \"string\"}, \"data_nascimento\": {\"type\": \"date\"}}}"
     )
+
     criado_em = models.DateTimeField(default=timezone.now)
 
     class Meta:
@@ -164,3 +166,46 @@ class WorflowTestReview(models.Model):
 
     def __str__(self):
         return f"[{self.workflow}, {self.empresa}], Aprovado IA: {self.if_approval} | Revisado: {self.reviewed}"
+
+class HumanReview(models.Model):
+    reviewer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        help_text="Usuário do sistema que realizou a revisão"
+    )
+    prompt_review = models.ForeignKey(
+        'prompts_hub.Prompt',
+        on_delete=models.CASCADE,
+        related_name='human_reviews_from_prompt',
+        help_text="Prompt que foi revisado manualmente"
+    )
+    sucesso_final = models.BooleanField(
+        default=False,
+        help_text="O objetivo final do usuário foi atingido? Ex: agendar, remarcar, etc."
+    )
+
+    qualidade_respostas = models.IntegerField(
+        choices=[(i, f"{i}/5") for i in range(1, 6)],
+        default=3,
+        help_text="Nota geral para as respostas da IA (completude, clareza, coerência)"
+    )
+
+    houve_ruidos = models.BooleanField(
+        default=False,
+        help_text="Houve partes da conversa onde a IA demonstrou ruído ou má interpretação?"
+    )
+
+    comentario_geral = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Comentários adicionais sobre o comportamento da IA no caso analisado"
+    )
+
+    criado_em = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-criado_em']
+
+    def __str__(self):
+        return f"Revisão de  por {self.reviewer} | Sucesso: {self.sucesso_final}"
