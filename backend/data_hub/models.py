@@ -1,6 +1,8 @@
 import uuid
 from django.db import models
 
+def caminho_upload_conhecimento(instance, filename):
+    return f"base_conhecimento/{instance.id}/{filename}"
 class Empresa(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     nome = models.CharField(max_length=255)
@@ -9,6 +11,7 @@ class Empresa(models.Model):
     tokeninstance = models.CharField(max_length=100, blank=True, null=True)
     status = models.CharField(max_length=50, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    arquivo_base_conhecimento = models.FileField(upload_to=caminho_upload_conhecimento, null=True, blank=True)
 
     class Meta:
         db_table = 'hub_empresa'

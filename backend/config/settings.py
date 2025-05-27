@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'data_hub',
     'prompts_hub',
     'maintenance',
+    'knowledge_base',
+     "pgvector.django",
     'django_json_widget'
 ]
 

@@ -2,7 +2,7 @@
 Acesso ao banco
     sudo docker exec -it avatar-n8n_postgres_1 psql -U machiron -d machiron_avatar
 sudo docker exec -it 52d434ab52fb redis-cli replicaof no one
-
+sudo chown -R ubuntu:ubuntu /home/ubuntu/avatar-n8n/backend
  INSERT INTO empresa (
     nome,
     telefonewhatsapp,
