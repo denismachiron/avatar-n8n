@@ -90,8 +90,11 @@ class Prompt(models.Model):
     def __str__(self):
         return f"{self.empresa.nome} | {self.workflow} | {self.nome_deploy} | {'Ativo' if self.ativo else 'Inativo'}"
 
-    def save(self, *args, **kwargs):
-        if self.pk:
+def save(self, *args, **kwargs):
+    is_creating = not self._state.adding
+
+    if is_creating:
+        try:
             old = Prompt.objects.get(pk=self.pk)
             last_version = PromptHistory.objects.filter(original=self).order_by('-version_number').first()
             next_version = (last_version.version_number + 1) if last_version else 1
@@ -108,15 +111,19 @@ class Prompt(models.Model):
                 version_number=next_version,
                 criado_por='AUTO_VERSION'
             )
+        except Prompt.DoesNotExist:
+            pass  # Primeira criação, não há versão anterior
 
-        if self.ativo:
-            Prompt.objects.filter(
-                empresa=self.empresa,
-                workflow=self.workflow,
-                ativo=True
-            ).exclude(pk=self.pk).update(ativo=False)
+    super().save(*args, **kwargs)
 
-        super().save(*args, **kwargs)
+    # Revalida o estado 'ativo' depois de salvo (garante que o objeto exista no banco)
+    if self.ativo:
+        Prompt.objects.filter(
+            empresa=self.empresa,
+            workflow=self.workflow,
+            ativo=True
+        ).exclude(pk=self.pk).update(ativo=False)
+
 
 
 class Workflow(models.Model):

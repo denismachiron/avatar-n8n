@@ -6,6 +6,7 @@ from .models import Prompt ,Workflow,WorflowTestReview,PromptHistory,HumanReview
 from django import forms
 from django_json_widget.widgets import JSONEditorWidget
 admin.site.register(HumanReview)
+admin.site.register(Workflow)
 
 @admin.register(WorflowTestReview)
 class WorflowTestReviewAdmin(admin.ModelAdmin):
