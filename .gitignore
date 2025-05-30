@@ -7,3 +7,6 @@ db.sqlite3
 media
 __pycache__/
 backend/base_conhecimento/
+# Python bytecode
+__pycache__/
+*.py[cod]

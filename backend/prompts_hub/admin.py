@@ -50,6 +50,11 @@ class PromptAdmin(admin.ModelAdmin):
     list_filter = ('empresa', 'workflow', 'ativo')
     search_fields = ('nome_deploy', 'descricao')
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(empresa__usuario=request.user)
 @admin.register(PromptHistory)
 class PromptHistoryAdmin(admin.ModelAdmin):
     list_display = ('original', 'version_number', 'criado_em', 'criado_por', 'ativo')

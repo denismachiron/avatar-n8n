@@ -2,3 +2,4 @@ django
 python-dotenv
 psycopg2-binary
 django-json-widget
+pgvector

@@ -31,7 +31,7 @@ DEBUG = os.getenv('DEBUG') == 'True'
 DEBUG = True
 
 ALLOWED_HOSTS = ['auto.machiron.com.br']
-
+EVOLUTION_API_BASE_URL='http://auto.machiron.com.br:8080'
 
 # Application definition
 
